@@ -1,5 +1,6 @@
 import streamlit as st
 from openai import OpenAI
+import requests
 
 # Show title and description.
 st.title("📄 Document question answering")
@@ -33,14 +34,14 @@ else:
 target_url = st.text_area("give me a target URL for this job listing:",
                          placeholder ="Must be a URL"
                          disabled=not uploaded_file)
-    if uploaded_file and question:
+    if uploaded_file and question and target_url:
 
         # Process the uploaded file and question.
         document = uploaded_file.read().decode()
         messages = [
             {
                 "role": "user",
-                "content": f"Here's a document: {document} \n\n---\n\n {question}",
+                "content": f"Here's a resume: {document} \n\n re-write the resume to align with the following job description from the url; `browser` {target_url} ",
             }
         ]
 
