@@ -30,7 +30,9 @@ else:
         placeholder="Can you give me a short summary?",
         disabled=not uploaded_file,
     )
-
+target_url = st.text_area("give me a target URL for this job listing:",
+                         placeholder ="Must be a URL"
+                         disabled=not uploaded_file)
     if uploaded_file and question:
 
         # Process the uploaded file and question.
